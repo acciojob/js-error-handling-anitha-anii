@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('evalForm');
+      var resultDiv = document.getElementById('result');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var expressionInput = document.getElementById('input1');
+        var expression = expressionInput.value;
+
+        try {
+          var result = evalString(expression);
+          resultDiv.textContent = 'Result: ' + result;
+        } catch (error) {
+          resultDiv.textContent = 'Error: ' + error.name + ' - ' + error.message;
+        }
+      });
+    });
+
 class OutOfRangeError extends Error {
   constructor() {
     super();
@@ -49,5 +68,3 @@ try {
 } catch (error) {
   console.log(error.name + ': ' + error.message);
 }
-
-   
